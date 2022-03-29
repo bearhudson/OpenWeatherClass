@@ -1,0 +1,1 @@
+# My implementation of the OpenWeather API in Python. WIP
