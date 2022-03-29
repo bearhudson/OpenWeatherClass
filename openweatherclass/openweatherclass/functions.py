@@ -42,7 +42,3 @@ def moon_phase_to_string(phase):
     elif phase < 1:
         position = 7
     return phases[position]
-
-
-def return_weather_emoji(cond_code):
-    weather_icons = []

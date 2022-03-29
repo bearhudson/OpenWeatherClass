@@ -2,10 +2,10 @@ import datetime
 import json
 import requests
 import math
-from WeatherClass import WeatherDataClass
-import WeatherClass.geodataclass as GeoDataClass
-import WeatherClass.historydataclass as HistoricDataClass
 
+from openweatherclass.openweatherclass.geodataclass import GeoDataClass
+from openweatherclass.openweatherclass.historydataclass import HistoricDataClass
+from openweatherclass.openweatherclass.weatherdataclass import WeatherDataClass
 
 with open("WeatherClass/condition_codes.json", mode='r') as file:
     CONDITIONS_JSON = json.load(file)

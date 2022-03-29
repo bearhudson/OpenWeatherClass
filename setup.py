@@ -1,11 +1,11 @@
 import setuptools
 
-with open("../README.md", "r", encoding="utf-8") as fh:
+with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="OpenWeatherClass",
-    version="0.10.0",
+    version="0.2.0",
     author="Brian Hudson",
     description="A Python implementation of OpenWeather's API",
     url="https://github.com/bearhudson/OpenWeatherClass",
