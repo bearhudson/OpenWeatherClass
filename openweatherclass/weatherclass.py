@@ -7,7 +7,7 @@ from openweatherclass.geodataclass import GeoDataClass
 from openweatherclass.historydataclass import HistoricDataClass
 from openweatherclass.weatherdataclass import WeatherDataClass
 
-with open("WeatherClass/condition_codes.json", mode='r') as file:
+with open("openweatherclass/condition_codes.json", mode='r') as file:
     CONDITIONS_JSON = json.load(file)
 
 

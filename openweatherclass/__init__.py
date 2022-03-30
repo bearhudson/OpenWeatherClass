@@ -1,3 +1,1 @@
-__version__ = '0.3.0'
-
-import openweatherclass.historydataclass
+__version__ = '0.3.1'
