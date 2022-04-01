@@ -11,7 +11,7 @@ with open("openweatherclass/condition_codes.json", mode='r') as file:
     CONDITIONS_JSON = json.load(file)
 
 
-class WeatherClass:
+class OpenWeatherClass:
 
     def __init__(self, api_key, zipcode, units='metric'):
         self.API_KEY = api_key
