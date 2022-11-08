@@ -1,6 +1,6 @@
 import datetime
-import json
 import requests
+from requests import HTTPError
 import math
 
 from openweatherclass.geodataclass import GeoDataClass
@@ -26,31 +26,40 @@ class OpenWeatherClass:
         self.get_weather()
 
     def get_coordinates(self):
+        zip_request = None
         payload = {
             'zip': f"{self.zipcode}",
             'appid': self.API_KEY,
         }
-        zip_request = requests.get(url='https://api.openweathermap.org/geo/1.0/zip', params=payload)
-        zip_request.raise_for_status()
+        try:
+            zip_request = requests.get(url='https://api.openweathermap.org/geo/1.0/zip', params=payload)
+            zip_request.raise_for_status()
+        except HTTPError:
+            print("Error Fetching Data...")
         self.geo_data = zip_request.json()
         self.lat = self.geo_data['lat']
         self.lon = self.geo_data['lon']
 
     def get_weather(self):
+        weather_request = None
         payload = {
             "lat": self.lat,
             "lon": self.lon,
             "appid": self.API_KEY,
             "units": self.units
         }
-        weather_request = requests.get(url='https://api.openweathermap.org/data/2.5/onecall', params=payload)
-        weather_request.raise_for_status()
+        try:
+            weather_request = requests.get(url='https://api.openweathermap.org/data/2.5/onecall', params=payload)
+            weather_request.raise_for_status()
+        except HTTPError:
+            print("Error Fetching Data...")
         self.weather_data = weather_request.json()
 
     def update_weather(self):
         self.get_weather()
 
     def get_historic_weather(self, day):
+        weather_request = None
         dt = math.floor((datetime.datetime.today() - datetime.timedelta(days=day)).timestamp())
         payload = {
             "lat": self.lat,
@@ -59,12 +68,16 @@ class OpenWeatherClass:
             "units": self.units,
             "dt": dt
         }
-        weather_request = requests.get(url='https://api.openweathermap.org/data/2.5/onecall/timemachine',
-                                       params=payload)
-        weather_request.raise_for_status()
+        try:
+            weather_request = requests.get(url='https://api.openweathermap.org/data/2.5/onecall/timemachine',
+                                           params=payload)
+            weather_request.raise_for_status()
+        except HTTPError:
+            print("Error Fetching Data...")
         self.historic_data = weather_request.json()
 
     def get_today_history(self):
+        weather_request = None
         dt = math.floor((datetime.datetime.today() - datetime.timedelta(days=1)).timestamp())
         payload = {
             "lat": self.lat,
@@ -73,9 +86,12 @@ class OpenWeatherClass:
             "units": self.units,
             "dt": dt
         }
-        weather_request = requests.get(url='https://api.openweathermap.org/data/2.5/onecall/timemachine',
-                                       params=payload)
-        weather_request.raise_for_status()
+        try:
+            weather_request = requests.get(url='https://api.openweathermap.org/data/2.5/onecall/timemachine',
+                                           params=payload)
+            weather_request.raise_for_status()
+        except HTTPError:
+            print("Error Fetching Data...")
         self.today_historic_data = weather_request.json()
 
     def check_condition(self, code):
