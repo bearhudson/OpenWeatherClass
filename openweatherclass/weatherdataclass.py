@@ -14,6 +14,10 @@ class Rain(BaseModel):
     field_1h: float = Field(..., alias='1h')
 
 
+class Snow(BaseModel):
+    field_1h: float = Field(..., alias='1h')
+
+
 class HourlyItem(BaseModel):
     dt: int
     temp: float
@@ -30,6 +34,7 @@ class HourlyItem(BaseModel):
     weather: List[WeatherItem]
     pop: float
     rain: Optional[Rain] = None
+    snow: Optional[Snow] = None
 
 
 class WeatherDataClass(BaseModel):
