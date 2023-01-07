@@ -42,3 +42,22 @@ def moon_phase_to_string(phase):
     elif phase < 1:
         position = 7
     return phases[position]
+
+
+def moon_phase_to_string_long(phase):
+    if phase < 0.125:
+        return "New Moon"
+    elif phase < 0.25:
+        return "Waxing Crescent"
+    elif phase < 0.375:
+        return "First Quarter"
+    elif phase < 0.5:
+        return "Waxing Gibbous"
+    elif phase < 0.625:
+        return "Full Moon"
+    elif phase < 0.75:
+        return "Waning Gibbous"
+    elif phase < 0.875:
+        return "Last Quarter"
+    elif phase < 1.0:
+        return "Waning Crescent"
