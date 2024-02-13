@@ -94,6 +94,26 @@ class OpenWeatherClass:
             print("Error Fetching Data...")
         self.today_historic_data = weather_request.json()
 
+    def get_hourly_historical(self):
+        weather_request = None
+        dt = math.floor((datetime.datetime.today().timestamp()))
+        payload = {
+            "lat": self.lat,
+            "lon": self.lon,
+            "appid": self.API_KEY,
+            "units": self.units,
+            "type": "hour",
+            "dt": dt
+        }
+        try:
+            weather_request = requests.get(url='https://history.openweathermap.org/data/2.5/history/city/',
+                                           params=payload)
+            weather_request.raise_for_status()
+        except HTTPError:
+            print(weather_request.json())
+            print("Error Fetching Data...")
+        self.today_historic_data = weather_request.json()
+
     def check_condition(self, code):
         for codes in self.condition_codes:
             try:
